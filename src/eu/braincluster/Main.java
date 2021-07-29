@@ -1,9 +1,6 @@
 package eu.braincluster;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -22,6 +19,9 @@ public class Main
 
         System.out.println("Test 3");
         Test3();
+
+        System.out.println("Test 4");
+        Test4();
     }
 
     private static void Test1()
@@ -108,7 +108,7 @@ public class Main
         System.out.println();
     }
 
-    public static void Test3()
+    private static void Test3()
     {
         var names = Arrays.asList("Pistabá", "Feribá", "Béla", "Julis", "Fatime");
 
@@ -157,5 +157,28 @@ public class Main
                 .forEach(System.out::println);
 
         System.out.println();
+    }
+
+    private static void Test4()
+    {
+        var names = Arrays.asList("Pistabá", "Feribá", "Béla", "Julis", "Fatime");
+
+        // Name starting with F
+        Optional<String> firstName1 =
+                names.stream()
+                        .filter(name -> name.startsWith("F"))
+                        .findFirst();
+
+        System.out.println(firstName1.orElse("No name found"));
+        firstName1.ifPresent(name -> System.out.println("Hello, " + name + "!"));
+
+        // Name starting with X
+        Optional<String> firstName2 =
+                names.stream()
+                        .filter(name -> name.startsWith("X"))
+                        .findFirst();
+
+        System.out.println(firstName2.orElse("No name found"));
+        firstName2.ifPresent(name -> System.out.println("Hello, " + name + "!"));
     }
 }
