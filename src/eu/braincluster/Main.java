@@ -22,6 +22,9 @@ public class Main
 
         System.out.println("Test 4");
         Test4();
+
+        System.out.println("Test 5");
+        Test5();
     }
 
     private static void Test1()
@@ -180,5 +183,27 @@ public class Main
 
         System.out.println(firstName2.orElse("No name found"));
         firstName2.ifPresent(name -> System.out.println("Hello, " + name + "!"));
+        System.out.println();
+    }
+
+    private static void Test5()
+    {
+        var names = Arrays.asList("Pistabá", "Feribá", "Béla", "Julis", "Fatime", "Flóra");
+
+        // String.join
+        var allNames = String.join(", ", names);
+
+        System.out.println(allNames);
+        System.out.println();
+
+        // Lambda
+        var allNamesF =
+                names.stream()
+                        .filter(name -> name.startsWith("F"))
+                        .map(String::toUpperCase)
+                        .collect(Collectors.joining(", "));
+
+        System.out.println(allNamesF);
+        System.out.println();
     }
 }
